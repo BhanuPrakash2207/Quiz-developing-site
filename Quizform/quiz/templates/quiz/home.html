@@ -1,0 +1,59 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+{% block title %}
+Quiz Application
+{% endblock %}
+{% block body %}
+<h1> Welcome to this QUIZ. Please Attempt this Quiz in 5 mins.</h1>
+<div align="right" id="displaytimer"><b>Timer: 0seconds</b></div>
+<form method="POST" action="">
+    {% csrf_token %}
+    {% for q in questions %}
+    <div class="form-group">
+        <label for="question">{{q.ques}}</label>
+    </div>
+    <div class="form-check">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.ques}}" id="gridradios1" value="{{q.op1}}">
+            <label class="form-check-label" for="gridRadios1">{{q.op1}}</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.ques}}" id="gridradios2" value="{{q.op2}}">
+            <label class="form-check-label" for="gridRadios2">{{q.op2}}</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.ques}}" id="gridradios3" value="{{q.op3}}">
+            <label class="form-check-label" for="gridRadios3">{{q.op3}}</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{q.ques}}" id="gridradios4" value="{{q.op4}}">
+            <label class="form-check-label" for="gridRadios2">{{q.op4}}</label>
+        </div>
+        <br>
+    </div>
+    {% endfor %}
+    <input id="timer" type="hidden" name="timer" value="">
+    <br>
+    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+</form>
+{% endblock %}
+{% block JS %}
+<script>
+    console.log('hello world')
+    const timer=document.getElementById('displaytimer')
+    console.log(timer.textContent)
+    const inputtag=document.getElementById('timer')
+    t=0
+    setInterval(()=>{
+    t+=1
+    timer.innerHTML="<b>Timer: " +t+ " seconds</b>"
+    inputtag.value=t
+    if(t=='300'){
+    document.getElementById('submit').click();
+    console.log(t);
+    }
+    },1000)
+
+
+</script>
+{% endblock %}

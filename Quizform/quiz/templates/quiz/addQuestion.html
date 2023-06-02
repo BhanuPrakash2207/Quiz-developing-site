@@ -1,0 +1,42 @@
+{% extends 'Quiz/base.html' %}
+{% block style %}
+
+#ques{
+margin-left:4px;
+}
+{% endblock %}
+{% block body %}
+
+<div class="jumbotron container row">
+    <div class="col-md-6">
+        <h1>Add Question</h1>
+        <div class="card card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as__p}}
+                <br>
+                <div><label for="Question" id="ques">Question</label>
+                    <input type="text" name="Question"></div>
+                <div><label for="Op1">Op1</label>
+                    <input type="text" name="option1"></div>
+                <div><label for="Op2">Op2</label>
+                    <input type="text" name="option2"></div>
+                <div><label for="Op3">Op3</label>
+                    <input type="text" name="option3"></div>
+                <div><label for="Op4">Op4</label>
+                    <input type="text" name="option4"></div>
+                <div><label for="ans">Ans</label>
+                    <input type="text" name="answer"></div>
+                <div><label for="start_time">Start Time</label>
+                <input type="datetime-local" name="start_time"> </div>
+                 <div><label for="end_time">End Time</label>
+                <input type="datetime-local" name="end_time"> </div>
+                <input type="submit" name="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
